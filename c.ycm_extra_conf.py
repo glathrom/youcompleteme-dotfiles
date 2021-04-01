@@ -43,6 +43,7 @@ flags = [
 '-I', '/usr/local/include',
 '-I', './include/',
 '-I', '/usr/local/include/',
+'-I', '$HOME/local/include/',
 ]
 
 
