@@ -1,27 +1,27 @@
 cmake_minimum_required(VERSION 3.10)
-project(mnist)
+project(DCIM)
 set(CMAKE_CXX_STANDARD 11)
 
-# setting paths for libraries and executable outputs
-set(CMAKE_SOURCE_DIR ${CMAKE_BINARY_DIR}/src)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
+# setting paths for source and includes 
+set(PROJECT_SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/include) 
 
-# setting path to include files 
-include_directories(${CMAKE_BINARY_DIR}/include) 
+# setting paths for libraries and executable outputs
+set(LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
 
 ################################################################
 # generate a shared library from src file
 ################################################################
 
-add_library(mnist SHARED ${CMAKE_SOURCE_DIR}/mnist.cpp)
+#add_library(mnist SHARED ${CMAKE_SOURCE_DIR}/mnist.cpp)
 
 ################################################################
 # compling the testing program from the library just created
 ################################################################
 
-link_directories(${CMAKE_BINARY_DIR}/lib)
+#link_directories(${CMAKE_BINARY_DIR}/lib)
 
-set(SOURCES ${CMAKE_SOURCE_DIR}/load.cpp)
+set(SOURCES ${PROJECT_SOURCE_DIR}/dcim.cpp)
 add_executable(myload ${SOURCES})
-target_link_libraries(myload libmnist.so)
+#target_link_libraries(myload libmnist.so)
