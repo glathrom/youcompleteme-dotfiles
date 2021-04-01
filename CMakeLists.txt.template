@@ -7,21 +7,21 @@ set(PROJECT_SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
 include_directories(${CMAKE_SOURCE_DIR}/include) 
 
 # setting paths for libraries and executable outputs
-set(LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
 
 ################################################################
 # generate a shared library from src file
 ################################################################
 
-#add_library(mnist SHARED ${CMAKE_SOURCE_DIR}/mnist.cpp)
+add_library(dcim SHARED ${PROJECT_SOURCE_DIR}/dcim.cpp)
 
 ################################################################
 # compling the testing program from the library just created
 ################################################################
 
-#link_directories(${CMAKE_BINARY_DIR}/lib)
+link_directories(${LIBRARY_OUTPUT_DIRECTORY})
 
-set(SOURCES ${PROJECT_SOURCE_DIR}/dcim.cpp)
+set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp)
 add_executable(myload ${SOURCES})
-#target_link_libraries(myload libmnist.so)
+target_link_libraries(myload ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libdcim.so)
