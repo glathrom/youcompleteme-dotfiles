@@ -39,10 +39,11 @@ flags = [
 # relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-xc',
-'-I', '/usr/include',
-'-I', '/usr/local/include',
+'-I', '/usr/include/',
+'-I', '/usr/local/include/',
 '-I', './include/',
 '-I', '/usr/local/include/',
+'-I', '$HOME/local/include/',
 ]
 
 
