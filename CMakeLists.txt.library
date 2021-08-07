@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.10) 
+project(stupid)
+set(CMAKE_CXX_STANDARD 20)
+
+# setting paths for libraries and executable outputs
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
+
+# setting path to include files 
+include_directories( ${CMAKE_SOURCE_DIR}/include ) 
+
+# generate a shared library from src file
+add_library(${CMAKE_PROJECT_NAME} SHARED ${CMAKE_SOURCE_DIR}/src/${CMAKE_PROJECT_NAME}.cpp)
+add_library(stupidstatic STATIC ${CMAKE_SOURCE_DIR}/src/${CMAKE_PROJECT_NAME}.cpp)
+
