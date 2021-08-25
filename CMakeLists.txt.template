@@ -1,24 +1,43 @@
 cmake_minimum_required(VERSION 3.16)
-project(attendance)
-set(CMAKE_CXX_STANDARD 20)
+project(booger)
+set(CMAKE_CXX_STANDARD 17)
 
+######################################################
 # setting paths for libraries and executable outputs
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
+######################################################
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin) 
+
+################################
 # setting path to include files 
+################################
+
 include_directories( 
     ${CMAKE_SOURCE_DIR}/include 
 ) 
 
+######################
+# imported libraries
+######################
 
-find_library(pthreadlib pthread)
-if(${pthreadlib} STREQUAL pthreadlib-NOTFOUND)
-    message(FATAL_ERROR "pthread not found")
-else()
-    message(STATUS "pthreadlib found as ${pthreadlib}")
-endif()
+add_library(dono STATIC IMPORTED)
+set_target_properties(dono PROPERTIES 
+    IMPORTED_LOCATION ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/libdono.a
+)
 
-set(SOURCES ${CMAKE_SOURCE_DIR}/src/display.cpp)
-add_executable(mydisplay ${SOURCES})
-target_link_libraries(mydisplay ${pthreadlib})
+######################
+# compiled libraries
+######################
+
+add_library(hello STATIC ${CMAKE_SOURCE_DIR}/src/hello.cpp)
+add_library(goodbye SHARED ${CMAKE_SOURCE_DIR}/src/goodbye.cpp)
+
+######################
+# target executable
+######################
+
+set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
+add_executable(application ${SOURCES})
+target_link_libraries(application hello goodbye dono)
