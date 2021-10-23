@@ -19,3 +19,15 @@ then
     echo "cleaning project build directory"
     rm -rf $base/build/*
 fi
+
+if [[ -n "$(ls -A $base/lib)" ]]
+then
+    echo "emptying lib directory"
+    rm $base/lib/*
+fi
+
+if [[ -n "$(ls -A $base/bin)" ]]
+then
+    echo "emptying bin directory"
+    rm $base/bin/*
+fi
