@@ -1,13 +1,15 @@
 {
     "plugins": {
-        "angular":{},
-        "doc_comment": null,
-        "es_modules": {},
-        "node": {}
+        "requirejs":{
+            "baseURL":"./",
+            "paths":{}
+        }
     },
+    "loadEagerly":[
+        "importantfile.js"
+    ],
     "libs": [
         "browser",
-        "jquery",
-        "react"
-    ],
+        "jquery"
+    ]
 }
