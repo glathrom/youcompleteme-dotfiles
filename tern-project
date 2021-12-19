@@ -1,0 +1,13 @@
+{
+    "plugins": {
+        "angular":{},
+        "doc_comment": null,
+        "es_modules": {},
+        "node": {}
+    },
+    "libs": [
+        "browser",
+        "jquery",
+        "react"
+    ],
+}
